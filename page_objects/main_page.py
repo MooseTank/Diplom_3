@@ -71,11 +71,17 @@ class MainPage(BasePage):
     @allure.step('Проверка отображения окна о создании заказа')
     def check_displaying_confirmation_of_order(self):
         return self.check_displaying_of_element(MainPageLocotors.confirmation_modal_of_order)
+
     @allure.step('Получение номера в окне о создании заказа')
     def get_number_of_order_in_conformation(self):
         self.wait_for_element_to_change_text(MainPageLocotors.number_of_order_in_modal_confirmation, '9999')
+        return self.get_text_on_element(MainPageLocotors.number_of_order_in_modal_confirmation)
 
     @allure.step('Кликнуть по кнопке закрытия окна о создании заказа')
     def click_close_button_of_conformation(self):
         self.check_element_is_clickable(MainPageLocotors.button_close_confirmation)
         self.click_on_element(MainPageLocotors.button_close_confirmation)
+
+    @allure.step('Ждем загрузки главной')
+    def main_page_loading_wait(self):
+        self.wait_for_element_hide(MainPageLocotors.OVERLAY)

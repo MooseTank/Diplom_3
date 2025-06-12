@@ -4,6 +4,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from seletools.actions import drag_and_drop
 import allure
+import time
 
 
 class BasePage:
@@ -12,7 +13,7 @@ class BasePage:
 
     @allure.step('Подождать прогрузки элемента')
     def wait_visibility_of_element(self, locator):
-        WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located(locator))
+        WebDriverWait(self.driver, 20).until(expected_conditions.visibility_of_element_located(locator))
 
     @allure.step('Найти элемент на странице')
     def find_element_with_wait(self, locator):
@@ -49,9 +50,15 @@ class BasePage:
 
     @allure.step('Проверить кликабельность элемента')
     def check_element_is_clickable(self, locator):
-        return WebDriverWait(self.driver, 15).until(expected_conditions.element_to_be_clickable(locator))
+        return WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(locator))
 
     @allure.step('Подождать смену текста на элементе')
     def wait_for_element_to_change_text(self, locator, value):
         return WebDriverWait(self.driver, 10).until_not(expected_conditions.
                                                         text_to_be_present_in_element(locator, value))
+
+    @allure.step('Ждем пока элемент станет невидимым')
+    def wait_for_element_hide(self, locator, timeout=20, delay=5):
+        WebDriverWait(self.driver, timeout).until(EC.invisibility_of_element_located(locator))
+        time.sleep(delay)
+        return self.driver.find_element(*locator)

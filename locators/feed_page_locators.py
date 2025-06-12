@@ -29,9 +29,7 @@ class FeedPageLocators:
     order_in_progress = (By.XPATH, '//ul[contains(@class, "OrderFeed_orderListReady")]/li')
 
     # Номер заказа в разделе "В работе"
-    number_of_order_in_progress = (By.XPATH, '//ul[contains(@class, '
-                                             '"OrderFeed_orderListReady")]/li[contains(@class, '
-                                             '"text_type_digits-default")]')
+    number_of_order_in_progress = (By.XPATH, "(//li[contains(@class, 'text text_type_digits-default mb-2')])[6][1]")
 
     # Номер заказа в ленте — заготовка, в которую нужно подставить id искомого заказа
     id_order_card_in_feed_with_substitutions = (By.XPATH, './/*[text()="{order_id}"]')

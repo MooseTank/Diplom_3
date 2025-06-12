@@ -23,12 +23,12 @@ class FeedPage(BasePage):
         return self.get_text_on_element(FeedPageLocators.quantity_of_orders)
 
     @allure.step('Получить количество заказов за сегодня')
-    def get_quantity_of_orders_dayly(self):
+    def get_quantity_of_orders_daily(self):
         self.find_element_with_wait(FeedPageLocators.daily_quantity_of_orders)
         return self.get_text_on_element(FeedPageLocators.daily_quantity_of_orders)
 
     @allure.step('Проверить наличие номера заказа в списке ленты')
-    def check_od_order_in_feed(self, order_id):
+    def check_id_order_in_feed(self, order_id):
         locator = FeedPageLocators.id_order_card_in_feed_with_substitutions
         locator_with_order_id = (locator[0], locator[1].format(order_id=order_id))
         self.find_element_with_wait(locator_with_order_id)

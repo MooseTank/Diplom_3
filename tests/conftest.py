@@ -6,7 +6,6 @@ from helpers import *
 import requests
 
 
-
 @pytest.fixture(params=["chrome", "firefox"])
 def driver(request):
     if request.param == "chrome":
@@ -61,4 +60,4 @@ def set_user_tokens(driver, create_and_delete_new_user):
     access_token = user_data.get('accessToken')
     refresh_token = user_data.get('refreshToken')
     driver.execute_script(f'window.localStorage.setItem("accessToken", "{access_token}");')
-    driver.execute_script(f'window.localStorage.setItem("accessToken", "{refresh_token}");')
+    driver.execute_script(f'window.localStorage.setItem("refreshToken", "{refresh_token}");')
