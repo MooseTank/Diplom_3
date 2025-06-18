@@ -3,6 +3,7 @@ import allure
 from selenium import webdriver
 from urls import URLS
 from helpers import *
+from data import INGREDIENTS
 import requests
 
 
@@ -46,7 +47,7 @@ def create_and_delete_new_user():
 def create_user_and_order_with_delete_user(create_and_delete_new_user):
     access_token = create_and_delete_new_user[1]['accessToken']
     headers = {'Authorization': access_token}
-    payload = {'ingredients': ['61c0c5a71d1f82001bdaaa6d', '61c0c5a71d1f82001bdaaa72', '61c0c5a71d1f82001bdaaa6f']}
+    payload = {'ingredients': INGREDIENTS}
     response_body = requests.post(URLS.ORDER_CREATE, data=payload, headers=headers)
 
     yield access_token, response_body

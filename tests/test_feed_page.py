@@ -1,4 +1,4 @@
-from .conftest import *
+import allure
 from page_objects.main_page import MainPage
 from page_objects.feed_page import FeedPage
 from page_objects.account_page import AccountPage
